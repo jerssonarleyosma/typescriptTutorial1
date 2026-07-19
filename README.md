@@ -1,5 +1,7 @@
 # Aprendiendo TypeScript
 
+## Objetivo del repositorio
+
 Este repositorio reúne ejercicios y apuntes de mi proceso de aprendizaje de
 TypeScript.
 
@@ -8,7 +10,40 @@ los navegadores y demás entornos de ejecución trabajan con JavaScript, durante
 el desarrollo los archivos `.ts` se comprueban y se transpilan a archivos
 `.js`.
 
-## Inicialización del proyecto
+El código fuente TypeScript se encuentra en `src` y, de acuerdo con la
+configuración actual, los archivos generados se guardan en `dist`.
+
+## Instalación y uso del proyecto
+
+Después de clonar o descargar el repositorio, un nuevo desarrollador debe
+instalar sus dependencias con:
+
+```bash
+npm install
+```
+
+Este comando lee `package.json` y `package-lock.json`, y crea localmente la
+carpeta `node_modules` con las versiones correspondientes.
+
+### Compilar el proyecto
+
+Para comprobar y transpilar todo el proyecto usando la configuración de
+`tsconfig.json` se ejecuta:
+
+```bash
+npx tsc
+```
+
+Para mantener el compilador observando los cambios y volver a compilar
+automáticamente se usa:
+
+```bash
+npx tsc --watch
+```
+
+## Cómo se creó el proyecto
+
+### Inicialización
 
 El proyecto se inició con:
 
@@ -20,7 +55,7 @@ npm init -y
 `--yes`) evita el cuestionario interactivo y acepta sus valores
 predeterminados.
 
-## Instalación de TypeScript
+### Instalación de TypeScript
 
 TypeScript se instaló como una dependencia de desarrollo:
 
@@ -50,83 +85,9 @@ desarrollador. Tampoco se instaló como una dependencia de producción con
 `npm install typescript`, ya que el compilador no forma parte del código que se
 necesita durante la ejecución de esta aplicación.
 
-El desarrollador nuevo debe clonar o descargar el repositorio se deben instalar sus
-dependencias con:
+## Compilación en detalle
 
-```bash
-npm install
-```
-
-Este comando lee `package.json` y `package-lock.json`, y vuelve a crear la
-carpeta `node_modules` con las versiones correspondientes localmente.
-
-## Archivos de apoyo
-
-### `.gitignore`
-
-El archivo `.gitignore` se generó con
-[gitignore.io](https://www.toptal.com/developers/gitignore) utilizando las
-plantillas `Windows`, `Linux`, `macOS` y `Node`.
-
-Las primeras tres plantillas evitan subir archivos innecesarios creados por
-los diferentes sistemas operativos. La plantilla de Node ignora, entre otros
-elementos, la carpeta `node_modules` tema que se explicó más arriba de este texto.
-
-`node_modules` puede ser muy grande y no debe almacenarse en Git. Las
-dependencias ya están declaradas en `package.json` y bloqueadas en
-`package-lock.json`, por lo que otro desarrollador puede recuperarlas con
-`npm install`.
-
-### `.editorconfig`
-
-El archivo `.editorconfig` comparte reglas básicas de formato entre editores
-compatibles. En este proyecto configura, entre otras cosas:
-
-- Codificación UTF-8.
-- Indentación con espacios.
-- Dos espacios por nivel de indentación.
-- Eliminación de espacios sobrantes al final de las líneas.
-- Un salto de línea al final de cada archivo.
-
-Visual Studio Code puede respetar estas reglas cuando cuenta con soporte para
-EditorConfig.
-
-## Comprobación de JavaScript con TypeScript
-
-El archivo `dist/demo.js` contiene JavaScript escrito directamente; no fue
-transpilado desde un archivo TypeScript. Al principio incluye el comentario:
-
-```js
-// @ts-check
-```
-
-Esta directiva pide al servicio de TypeScript que compruebe el archivo
-JavaScript y muestre en el editor errores que pueda detectar. El archivo sigue
-siendo JavaScript y puede ejecutarse como tal.
-
-También se puede proporcionar información de tipos mediante comentarios
-[JSDoc](https://jsdoc.app/). Por ejemplo, el archivo declara un arreglo con:
-
-```js
-/** @type {any[]} */
-const products = [];
-```
-
-Y especifica que el parámetro `index` es un número:
-
-```js
-/**
- * @param {number} index
- */
-function addProduct(index) {
-  // ...
-}
-```
-
-Así se obtiene parte de la ayuda de TypeScript sin convertir el archivo `.js`
-en un archivo `.ts` y en sí es una prueba para usar tipados como comentarios.
-
-## Compilación manual
+### Compilar un archivo individual
 
 Como TypeScript está instalado localmente, se puede ejecutar su compilador con
 `npx`:
@@ -135,7 +96,8 @@ Como TypeScript está instalado localmente, se puede ejecutar su compilador con
 npx tsc archivo.ts
 ```
 
-Para volver a compilar cuando se detecten cambios se agrega `--watch`:
+Para volver a compilar ese archivo cuando se detecten cambios se agrega
+`--watch`:
 
 ```bash
 npx tsc archivo.ts --watch
@@ -150,8 +112,8 @@ node_modules/.bin/tsc
   -> node_modules/typescript/lib/tsc.js
 ```
 
-El comando correcto no es `npx tsc`. Si TypeScript estuviera instalado
-globalmente se podría ejecutar directamente:
+El comando correcto no es `npm tsc`. Si TypeScript estuviera instalado
+globalmente, se podría ejecutar directamente:
 
 ```bash
 tsc archivo.ts
@@ -312,25 +274,69 @@ se ejecutará el código. Los valores creados por `tsc --init` son un buen punto
 de partida, pero no existe una configuración universal: deben cambiarse solo
 cuando las necesidades del proyecto lo requieran.
 
-## Comandos habituales
+## Comprobación de JavaScript con TypeScript
 
-Instalar las dependencias:
+El archivo `src/demo.js` contiene JavaScript escrito directamente; no fue
+transpilado desde un archivo TypeScript. Al principio incluye el comentario:
 
-```bash
-npm install
+```js
+// @ts-check
 ```
 
-Comprobar y transpilar todo el proyecto usando `tsconfig.json`:
+Esta directiva pide al servicio de TypeScript que compruebe el archivo
+JavaScript y muestre en el editor errores que pueda detectar. El archivo sigue
+siendo JavaScript y puede ejecutarse como tal.
 
-```bash
-npx tsc
+También se puede proporcionar información de tipos mediante comentarios
+[JSDoc](https://jsdoc.app/). Por ejemplo, el archivo declara un arreglo con:
+
+```js
+/** @type {any[]} */
+const products = [];
 ```
 
-Mantener el compilador observando los cambios:
+Y especifica que el parámetro `index` es un número:
 
-```bash
-npx tsc --watch
+```js
+/**
+ * @param {number} index
+ */
+function addProduct(index) {
+  // ...
+}
 ```
 
-El código fuente se encuentra en `src` y, según la configuración actual, los
-archivos generados se guardan en `dist`.
+Así se obtiene parte de la ayuda de TypeScript sin convertir el archivo `.js`
+en un archivo `.ts`; en este repositorio es una prueba del uso de tipos por
+medio de comentarios.
+
+## Archivos de apoyo
+
+### `.gitignore`
+
+El archivo `.gitignore` se generó con
+[gitignore.io](https://www.toptal.com/developers/gitignore) utilizando las
+plantillas `Windows`, `Linux`, `macOS` y `Node`.
+
+Las primeras tres plantillas evitan subir archivos innecesarios creados por
+los diferentes sistemas operativos. La plantilla de Node ignora, entre otros
+elementos, la carpeta `node_modules`, mencionada en la sección de instalación.
+
+`node_modules` puede ser muy grande y no debe almacenarse en Git. Las
+dependencias ya están declaradas en `package.json` y bloqueadas en
+`package-lock.json`, por lo que otro desarrollador puede recuperarlas con
+`npm install`.
+
+### `.editorconfig`
+
+El archivo `.editorconfig` comparte reglas básicas de formato entre editores
+compatibles. En este proyecto configura, entre otras cosas:
+
+- Codificación UTF-8.
+- Indentación con espacios.
+- Dos espacios por nivel de indentación.
+- Eliminación de espacios sobrantes al final de las líneas.
+- Un salto de línea al final de cada archivo.
+
+Visual Studio Code puede respetar estas reglas cuando cuenta con soporte para
+EditorConfig.
