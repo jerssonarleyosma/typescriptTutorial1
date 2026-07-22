@@ -127,7 +127,7 @@ ejecuta sus scripts.
 > Al pasar nombres de archivos directamente, como en `npx tsc archivo.ts`, el
 > compilador no utiliza la configuración del proyecto de la misma forma. Una
 > vez creado `tsconfig.json`, es preferible ejecutar `npx tsc` sin indicar
-> archivos.
+> archivos, por el momento todos los compilados se van de components a dist.
 
 ### Elegir la versión de JavaScript con `--target`
 

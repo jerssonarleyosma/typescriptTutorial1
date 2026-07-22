@@ -4,7 +4,7 @@
     console.log('price', price);
 
     let age: number = 32;
-    age = age + 1; 
+    age = age + 1;
     console.log('age', age);
 
 
