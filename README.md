@@ -339,4 +339,4 @@ compatibles. En este proyecto configura, entre otras cosas:
 - Un salto de línea al final de cada archivo.
 
 Visual Studio Code puede respetar estas reglas cuando cuenta con soporte para
-EditorConfig.
+EditorConfig, por ejemplo instalando la extensión [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) que tiene la cara de un ratón con gafas.
